@@ -52,7 +52,7 @@ There are 10 total levels, as follows|
 
 ## Console Commands
 
-Here is a list of all console commands, sorted alphabetically and grouped by required permission level. Each level also has access to the commands of the levels above them. To run one of these console comands, enter them into chat.
+Here is a list of all console commands, grouped by required permission level. Each level also has access to the commands of the levels above them. To run one of these console comands, enter them into chat.
 
 Values in `<brackets>` represent necessary parameters, values in `(parens)` represnt optional parameters.
 
