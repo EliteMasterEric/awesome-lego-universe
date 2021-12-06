@@ -1,6 +1,6 @@
 # Awesome Lego Universe
 
-[](!/images/splash-art.jpg)
+![](images/splash-art.jpg)
 
 > A curated list of awesome things related to LEGO Universe.
 
@@ -10,21 +10,23 @@ On December 5th, 2021, the Darkflame Universe project released an open-source se
 
 ## Guides
 
-* [Frequently Asked Questions](/frequently-asked-questions.md)
-* [Verify My Client (Checksums)](/verify-my-client.md)
+* [Frequently Asked Questions](frequently-asked-questions.md)
+* [Verify My Client (Checksums)](verify-my-client.md)
 
 ### Server Setup Guides
 
-* [Server Setup Guide (Google Cloud)](/google-cloud-setup.md)
+* [Server Setup Guide (Google Cloud)](google-cloud-setup.md)
+* [The Mythran's Bible - A Server Operator's Guide to Darkflame Universe](mythrans-bible.md)
 
 ## Community
 
 * [/r/LEGOUniverse on Reddit](https://old.reddit.com/r/legouniverse/)
-* 
+* [LEGO Universe Community Hub on Discord](https://discord.com/invite/tWTAa7f)
 
 ## Development
 
-* [](https://lu-dev.net/)
+* [LU Developer Network](https://lu-dev.net/)
+* [DarkflameUniverse on GitHub](https://github.com/DarkflameUniverse)
 
 ## Contributions
 
