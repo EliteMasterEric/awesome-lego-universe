@@ -17,9 +17,9 @@ On December 5th, 2021, the Darkflame Universe project released an open-source se
 
 Curated Guides:
 
-* [Server Setup Guide (Google Cloud)](google-cloud-setup.md)
-* [Server Setup Guide (Windows)](native-windows-setup.md)
-* [Server Setup Guide (Windows with WSL)](wsl-setup.md)
+* ~~[Server Setup Guide (Google Cloud)]\(google-cloud-setup.md)~~
+* ~~[Server Setup Guide (Windows)]\(native-windows-setup.md)~~
+* ~~[Server Setup Guide (Windows with WSL)]\(wsl-setup.md)~~
 * [The Mythran's Bible - A Server Operator's Guide to Darkflame Universe](mythrans-bible.md)
 
 Other Guides:
