@@ -15,8 +15,15 @@ On December 5th, 2021, the Darkflame Universe project released an open-source se
 
 ### Server Setup Guides
 
+Curated Guides:
+
 * [Server Setup Guide (Google Cloud)](google-cloud-setup.md)
 * [The Mythran's Bible - A Server Operator's Guide to Darkflame Universe](mythrans-bible.md)
+
+Other Guides:
+
+* https://github.com/maxdelayer/DLUQuickstart
+* https://gist.github.com/SunFlea/893fd80f39c7cf9ab31baacac284025d
 
 ## Community
 
