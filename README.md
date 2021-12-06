@@ -24,6 +24,7 @@ Other Guides:
 
 * https://github.com/maxdelayer/DLUQuickstart
 * https://gist.github.com/SunFlea/893fd80f39c7cf9ab31baacac284025d
+* https://github.com/Drahsid/DarkflameServerInstallScript
 
 ## Community
 
