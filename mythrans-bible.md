@@ -11,8 +11,15 @@ The server you're running will need to open the following ports to allow for out
 * 1001 - Auth Server
 * 2000 - Master Server
 * 2005 - Chat Server
-* 3001 -
-* 3007 -
+* 3000-4000 - 
+
+If you're using ufw as a firewall (most firewalled Linux systems), this can be done with:
+```
+sudo ufw allow 1001/udp
+sudo ufw allow 2000/udp
+sudo ufw allow 2005/udp
+sudo ufw allow 3000:4000/udp
+```
 
 ## GM Levels
 
