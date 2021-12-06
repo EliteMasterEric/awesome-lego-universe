@@ -15,8 +15,18 @@ On December 5th, 2021, the Darkflame Universe project released an open-source se
 
 ### Server Setup Guides
 
-* [Server Setup Guide (Google Cloud)](google-cloud-setup.md)
+Curated Guides:
+
+* ~~[Server Setup Guide (Google Cloud)]\(google-cloud-setup.md)~~
+* ~~[Server Setup Guide (Windows)]\(native-windows-setup.md)~~
+* ~~[Server Setup Guide (Windows with WSL)]\(wsl-setup.md)~~
 * [The Mythran's Bible - A Server Operator's Guide to Darkflame Universe](mythrans-bible.md)
+
+Other Guides:
+
+* https://github.com/maxdelayer/DLUQuickstart
+* https://gist.github.com/SunFlea/893fd80f39c7cf9ab31baacac284025d
+* https://github.com/Drahsid/DarkflameServerInstallScript
 
 ## Community
 
@@ -25,8 +35,13 @@ On December 5th, 2021, the Darkflame Universe project released an open-source se
 
 ## Development
 
-* [LU Developer Network](https://lu-dev.net/)
 * [DarkflameUniverse on GitHub](https://github.com/DarkflameUniverse)
+* [LEGO Universe Technical Documentation](https://docs.lu-dev.net/en/latest/)
+  - Describes everything known about the inner workings of the game, including the Behavior and Skill systems.
+* [LU Explorer tool](https://github.com/Xiphoseer/lu-explorer)
+  - Allows you to browse the contents of `CDClient.fdb`.
+* [LU Developer Network](https://lu-dev.net/)
+* [LU Server Projects](https://lusprojects.github.io/)
 
 ## Contributions
 
