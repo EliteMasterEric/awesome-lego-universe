@@ -32,8 +32,13 @@ Other Guides:
 
 ## Development
 
-* [LU Developer Network](https://lu-dev.net/)
 * [DarkflameUniverse on GitHub](https://github.com/DarkflameUniverse)
+* [LEGO Universe Technical Documentation](https://docs.lu-dev.net/en/latest/)
+  - Describes everything known about the inner workings of the game, including the Behavior and Skill systems.
+* [LU Explorer tool](https://github.com/Xiphoseer/lu-explorer)
+  - Allows you to browse the contents of `CDClient.fdb`.
+* [LU Developer Network](https://lu-dev.net/)
+* [LU Server Projects](https://lusprojects.github.io/)
 
 ## Contributions
 
