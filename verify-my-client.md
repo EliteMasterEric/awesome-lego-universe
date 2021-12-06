@@ -12,7 +12,7 @@ A checksum function is a procedure which takes some input data and generates an 
 
 The important thing to know is that if the input data is even the tiniest bit different, it will completely change the output string. See below.
 
-[](!/images/checksum.png)
+![](images/checksum.png)
 
 By the nature of the checksum function, it is basically impossible to intentionally create a file that even resembles, much less exactly matches, a given checksum. For SHA-256 (the checksum function we will be using in this guide), the odds that two files will have the same checksum is approximately...
 
