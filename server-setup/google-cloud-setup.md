@@ -78,4 +78,4 @@ You should have a directory containing the following file structure.
 
 Next, [sign up for an account with Google Cloud](https://cloud.google.com/). You should see this popup to let you know you've received $300 in trial credits:
 
-![](images/google-cloud-trial.png)
+![](../images/google-cloud-trial.png)
