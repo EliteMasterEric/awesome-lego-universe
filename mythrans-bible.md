@@ -275,11 +275,11 @@ Set the message of the next announcement to send.
 
 **TODO: What does this do?**
 
-#### /gmadditem <lot> (count)
+#### /gmadditem <id> (count)
 
-Gives this player an item with a specific LOT. Optionally specify the number of the item to give.
+Gives this player an item based on its ID. Optionally specify the quantity of the item to give.
 
-**TODO: Get a list of common item LOTs.**
+See [Notable Item IDs](#notable-item-ids) for a list of some of the item IDs you can use.
 
 #### /announce
 
@@ -325,9 +325,9 @@ Refills the player's Health, Armor, and Imagination back to full.
 
 Looks up a player by name and ???
 
-#### /spawn <lot>
+#### /spawn <entity-id>
 
-Spawns an entity of the given lot.
+Spawns an entity of the given ID.
 
 **TODO: Add IDs for certain common entities.**
 
@@ -483,10 +483,10 @@ ID | Name
 58005|UNKNOWN
 58006|UNKNOWN
 
-## Notable Item LOTS
+## Notable Item IDs
 
-Below is a list of LOT ids for notable items.
+Below is a list of item ids for notable items.
 
 ID|Name
 ---|---
-ID|Name
+1727|Jetpack
