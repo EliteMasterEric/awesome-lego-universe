@@ -95,7 +95,7 @@ Once you've opened the terminal, run these commands, one at a time, in order.
 ```
 # Install almost every dependency we need.
 sudo apt-get update
-sudo apt-get install -y python3 python3-pip build-essential gcc libssl-dev zlib1g zlib1g-dev sqlite git gpg wget unzip
+sudo apt-get install -y python3 python3-pip build-essential gcc libssl-dev zlib1g zlib1g-dev sqlite git gpg wget unzip screen
 
 # This installs MariaDB
 sudo apt-get install -y default-mysql-server
@@ -134,6 +134,10 @@ Next, run these commands one at a time to download and build the server:
 git clone --recursive https://github.com/DarkflameUniverse/DarkflameServer ~/DarkflameServer
 git clone https://github.com/lcdr/utils.git ~/lcdrutils
 git clone https://github.com/DarkflameUniverse/AccountManager ~/AccountManager
+wget -O ~/AccountManager/credentials.py https://raw.githubusercontent.com/MasterEric/awesome-lego-universe/master/server-setup/google-cloud-res/credentials.py
+wget -O ~/AccountManager/resources.py https://raw.githubusercontent.com/MasterEric/awesome-lego-universe/master/server-setup/google-cloud-res/resources.py
+pip3 install -r ~/AccountManager/requirements.txt
+
 cd ~/DarkflameServer
 chmod +x build.sh
 ./build.sh
@@ -183,6 +187,9 @@ Now lets assign these rules to the server.
 Once the build is done, we're going to do the final configuration needed for the server.
 
 ```
+# Create a logs folder.
+mkdir ~/logs
+
 # Initialize the database. You will need to enter the password you chose earlier.
 mariadb darkflame -u darkflame -p < ~/DarkflameServer/migrations/dlu/0_initial.sql;
 
@@ -223,12 +230,29 @@ sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/authconfi
 sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/chatconfig.ini
 sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/masterconfig.ini
 sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/worldconfig.ini
-
+sed -i "s|DB_URL = 'mysql+pymysql://darkflame:PASSWORD@localhost/darkflame'|DB_URL = 'mysql+pymysql://$MYSQLUSER:$MYSQLPASS@$MYSQLHOST/$MYSQLDB'|g" "~/AccountManager/credentials.py"
 ```
 
-## Setup the Account Manager
+## Run the Server
 
-Before we can setup the server, we need to setup and start the account manager. This will provide a web interface for the server to manage accounts, approve usernames, and generate CD keys to give to your friends.
+Now we are finally going to run the server.
+
+First run the following command; you will be prompted to create a username and password. Make this secure, as it will be the credentials for a Mythran account with full server operator access.
+
+```
+~/DarkflameServer/build/MasterServer -a
+```
+
+Now you can start the server and account manager. Run these commands:
+
+```
+screen -dmS darkflame-server bash -c "~/DarkflameServer/build/MasterServer"
+screen -dmS darkflame-accounts bash -c "python3 ~/AccountManager/app.py"
+```
+
+These will start the server and account manager in the background.
+You can view the logs of the server by running `screen -r darkflame-server` and of the account manager by running `screen -r darkflame-accounts`.
+You can stop viewing the logs by pressing `CTRL+A` and then `D`.
 
 ## Updating Darkflame Universe
 
