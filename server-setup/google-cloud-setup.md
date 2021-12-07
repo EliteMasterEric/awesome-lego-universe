@@ -92,7 +92,7 @@ Congratulations! What you've essentially done is reserve a tiny spot on Google's
 
 Once you've opened the terminal, run these commands, one at a time, in order.
 
-```
+```bash
 # Install almost every dependency we need.
 sudo apt-get update
 sudo apt-get install -y python3 python3-pip build-essential gcc libssl-dev zlib1g zlib1g-dev sqlite git gpg wget unzip screen
@@ -117,7 +117,7 @@ sudo mysql -u root
 
 The last command will start a MariaDB shell. Enter the following commands one at a time (be sure to change the password on the first line to something more secure):
 
-```
+```sql
 CREATE OR REPLACE USER 'darkflame'@'localhost' IDENTIFIED BY 'password';
 CREATE OR REPLACE DATABASE darkflame;
 GRANT ALL PRIVILEGES ON darkflame.* TO 'darkflame'@'localhost';
@@ -130,7 +130,7 @@ You will now have an empty database ready for later.
 
 Next, run these commands one at a time to download and build the server:
 
-```
+```bash
 git clone --recursive https://github.com/DarkflameUniverse/DarkflameServer ~/DarkflameServer
 git clone https://github.com/lcdr/utils.git ~/lcdrutils
 git clone https://github.com/DarkflameUniverse/AccountManager ~/AccountManager
@@ -186,15 +186,20 @@ Now lets assign these rules to the server.
 
 Once the build is done, we're going to do the final configuration needed for the server.
 
+Download the server-resources.zip file from Google Cloud Storage. Be sure to replace the bucket name.
+
+```bash
+gsutil cp gs://<BUCKET-NAME>/server-resources.zip ~/server-resources.zip
 ```
+
+Then run all these commands, one at a time, in order.
+
+```bash
 # Create a logs folder.
 mkdir ~/logs
 
 # Initialize the database. You will need to enter the password you chose earlier.
 mariadb darkflame -u darkflame -p < ~/DarkflameServer/migrations/dlu/0_initial.sql;
-
-# Download the server-resources.zip file from Google Cloud Storage. Be sure to replace the bucket name.
-gsutil cp gs://<BUCKET-NAME>/server-resources.zip ~/server-resources.zip
 
 # Unzip the server-resources.zip and move files to the proper location.
 unzip -q ~/server-resources.zip -d ~/server-resources/
@@ -212,26 +217,31 @@ sqlite3 ~/DarkflameServer/build/res/CDServer.sqlite ".read ${HOME}/DarkflameServ
 sqlite3 ~/DarkflameServer/build/res/CDServer.sqlite ".read ${HOME}/DarkflameServer/migrations/cdserver/2_script_component.sql"
 
 # Setup your config files.
-sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/authconfig.ini
-sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/chatconfig.ini
-sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/masterconfig.ini
-sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/worldconfig.ini
-sed -i "s/mysql_database=/mysql_database=darkflame/g" ~/DarkflameServer/authconfig.ini
-sed -i "s/mysql_database=/mysql_database=darkflame/g" ~/DarkflameServer/chatconfig.ini
-sed -i "s/mysql_database=/mysql_database=darkflame/g" ~/DarkflameServer/masterconfig.ini
-sed -i "s/mysql_database=/mysql_database=darkflame/g" ~/DarkflameServer/worldconfig.ini
-sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/authconfig.ini
-sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/chatconfig.ini
-sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/masterconfig.ini
-sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/worldconfig.ini
-
-# Give the server the MySQL password you setup earlier. Make sure to replace PASSWORD with the proper value each time.
-sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/authconfig.ini
-sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/chatconfig.ini
-sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/masterconfig.ini
-sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/worldconfig.ini
-sed -i "s|DB_URL = 'mysql+pymysql://darkflame:PASSWORD@localhost/darkflame'|DB_URL = 'mysql+pymysql://$MYSQLUSER:$MYSQLPASS@$MYSQLHOST/$MYSQLDB'|g" "~/AccountManager/credentials.py"
+sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/build/authconfig.ini
+sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/build/chatconfig.ini
+sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/build/masterconfig.ini
+sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/build/worldconfig.ini
+sed -i "s/mysql_database=/mysql_database=darkflame/g" ~/DarkflameServer/build/authconfig.ini
+sed -i "s/mysql_database=/mysql_database=darkflame/g" ~/DarkflameServer/build/chatconfig.ini
+sed -i "s/mysql_database=/mysql_database=darkflame/g" ~/DarkflameServer/build/masterconfig.ini
+sed -i "s/mysql_database=/mysql_database=darkflame/g" ~/DarkflameServer/build/worldconfig.ini
+sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/build/authconfig.ini
+sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/build/chatconfig.ini
+sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/build/masterconfig.ini
+sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/build/worldconfig.ini
 ```
+
+Now we need to fill in your password. Make sure to replace `PASSWORD` with the proper value on these lines.
+
+```bash
+sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/build/authconfig.ini
+sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/build/chatconfig.ini
+sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/build/masterconfig.ini
+sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/build/worldconfig.ini
+sed -i "s|DB_URL = 'mysql+pymysql://<mysql-user>:<mysql-password>@<mysql-host>/<mysql-database>'|DB_URL = 'mysql+pymysql://darkflame:PASSWORD@localhost/darkflame'|g" ~/AccountManager/credentials.py
+```
+
+Make sure to go back to the Cloud Storage page and delete the bucket you created, since you don't need it anymore.
 
 ## Run the Server
 
@@ -246,7 +256,7 @@ First run the following command; you will be prompted to create a username and p
 Now you can start the server and account manager. Run these commands:
 
 ```
-screen -dmS darkflame-server bash -c "~/DarkflameServer/build/MasterServer"
+screen -dmS darkflame-server bash -c "cd ~/DarkflameServer/build/; ./MasterServer"
 screen -dmS darkflame-accounts bash -c "python3 ~/AccountManager/app.py"
 ```
 
@@ -254,13 +264,30 @@ These will start the server and account manager in the background.
 You can view the logs of the server by running `screen -r darkflame-server` and of the account manager by running `screen -r darkflame-accounts`.
 You can stop viewing the logs by pressing `CTRL+A` and then `D`.
 
+That's it! You're done! Your server is online.
+
+## Moderation
+
+Now that you are running a server, you should follow these steps:
+
+* Go to your web browser, and navigate to `http://<IP-ADDRESS>:5000/dashboard`, where `<IP-ADDRESS>` is the IP address of your server.
+* You will see a login. Enter the Mythran credentials you entered earlier.
+* You will be redirected to the dashboard. Enter a number of keys to generate, and click `Generate`.
+* You will see a list of CD keys. Give one of these keys to each player you want to join.
+
+To allow a player to join, give them one of these CD keys, and tell them to go to `http://<IP-ADDRESS>:5000/activate` and create an account.
+
+Once they have an account, the player should be able to change their client's `boot.cfg` to use your IP address, and login with the account they just made, and play the game.
+
+<!-- At the top of the dashboard, you will also see a `Name Approval` button. Click it to switch to a new tab where you can approve custom minifigure usernames. -->
+
 ## Updating Darkflame Universe
 
 In the future, updates will be release to DarkflameServer that will include bug fixes and potentially even new features. To update the server, you can run the following commands, in order:
 
 ```
 # Shut down the server.
-**TODO: Shut down the server.**
+screen -S darkflame-server kill
 
 # Update the server.
 cd ~/DarkflameServer
@@ -268,7 +295,7 @@ git pull
 ./build.sh
 
 # Restart the server.
-**TODO: Restart the server.**
+screen -dmS darkflame-server bash -c "cd ~/DarkflameServer/build/; ./MasterServer"
 ```
 
 ## Troubleshooting
