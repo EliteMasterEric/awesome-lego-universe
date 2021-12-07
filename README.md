@@ -12,21 +12,18 @@ On December 5th, 2021, the Darkflame Universe project released an open-source se
 
 * [Frequently Asked Questions](frequently-asked-questions.md)
 * [Verify My Client (Checksums)](verify-my-client.md)
+* [The Mythran's Bible - A Server Operator's Guide to Darkflame Universe](mythrans-bible.md)
 
 ### Server Setup Guides
 
-Curated Guides:
+* [Elocore's Video Guide (WSL)](https://www.youtube.com/watch?v=mDGoV5AYaDo)
+* [Sunflea's Guide (WSL)](https://gist.github.com/SunFlea/893fd80f39c7cf9ab31baacac284025d)
+* [Drahsid's Install Script (Linux)](https://github.com/Drahsid/DarkflameServerInstallScript)
+* [MaxDelayer's Quick Start Scripts (Linux)](https://github.com/maxdelayer/DLUQuickstart)
 
 * ~~[Server Setup Guide (Google Cloud)]\(google-cloud-setup.md)~~
 * ~~[Server Setup Guide (Windows)]\(native-windows-setup.md)~~
 * ~~[Server Setup Guide (Windows with WSL)]\(wsl-setup.md)~~
-* [The Mythran's Bible - A Server Operator's Guide to Darkflame Universe](mythrans-bible.md)
-
-Other Guides:
-
-* https://github.com/maxdelayer/DLUQuickstart
-* https://gist.github.com/SunFlea/893fd80f39c7cf9ab31baacac284025d
-* https://github.com/Drahsid/DarkflameServerInstallScript
 
 ## Community
 
