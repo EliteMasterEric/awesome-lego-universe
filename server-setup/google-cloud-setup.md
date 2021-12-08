@@ -9,14 +9,6 @@ The following is a guide to setting up a functioning Darkflame Universe server i
 
 The downside to this method is that it does technically cost money. You may have to provide a payment method with Google. However, there is a one-year trial which gives $300 in credits, and the smallest instance is only about $5 a month.
 
-## WORK IN PROGRESS
-
-## Table of Contents
-
-1. [Setup Client Files](#setup-client-files)
-2. [Unpack Client Files](#unpack-client-files)
-3. [Setup Resource Directory](#setup-resource-directory)
-
 ## Setup Client Files
 
 The first step in this process is setting up your client files. You will need a Lego Universe 1.10.64 client before continuing. Note that a link to a client cannot be provided in this guide for legal reasons, but Google should be able to help you.
