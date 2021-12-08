@@ -174,7 +174,8 @@ We're going to create a set of Firewall rules that allow access to the server.
 * Set the name to `darkflame-server`.
 * Add `darkflame-server` to the list of target tags. We're going to assign this tag to our server later.
 * Set the Source IPv4 ranges to `0.0.0.0/0`. This represents all IP addresses, meaning this rule will allow any incoming IP.
-* Under Protocols and ports, check `TCP` and enter the string `1001, 2000, 2005, 3000-4000, 5000`. This will allow access to the auth server, master server, chat server, world servers, and account manager.
+* Under Protocols and ports, check `TCP` and enter the string `1001, 2000, 2005, 3000-4000, 3306, 5000`. This will allow access to the auth server, master server, chat server, world servers, database, and account manager.
+* Under Protocols and ports, check `UDP` and enter the string `1001, 2000, 2005, 3000-4000, 3306, 5000`.
 
 Now lets assign these rules to the server.
 
@@ -198,7 +199,7 @@ Then run all these commands, one at a time, in order.
 
 ```bash
 # Create a logs folder.
-mkdir ~/logs
+mkdir ~/DarkflameServer/build/logs
 
 # Initialize the database. You will need to enter the password you chose earlier.
 mariadb darkflame -u darkflame -p < ~/DarkflameServer/migrations/dlu/0_initial.sql;
@@ -220,9 +221,7 @@ sqlite3 ~/DarkflameServer/build/res/CDServer.sqlite ".read ${HOME}/DarkflameServ
 
 # Perform additional networking setup.
 EXTERNAL_IP=$(curl -H "Metadata-Flavor: Google" http://169.254.169.254/computeMetadata/v1/instance/network-interfaces/0/access-configs/0/external-ip)
-sudo lsmod | grep dummy
 sudo modprobe dummy
-sudo lsmod | grep dummy
 sudo ip link add eth10 type dummy
 sudo ip addr add $EXTERNAL_IP brd + dev eth10 label eth10:
 
