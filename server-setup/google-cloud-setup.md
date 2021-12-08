@@ -266,7 +266,7 @@ screen -dmS darkflame-accounts bash -c "python3 ~/AccountManager/app.py"
 
 These will start the server and account manager in the background.
 You can view the logs of the server by running `screen -r darkflame-server` and of the account manager by running `screen -r darkflame-accounts`.
-You can stop viewing the logs by pressing `CTRL+A` and then `D`.
+You can stop viewing the logs by pressing `CTRL+A` and then `D`. You can also close the window and the server will continue running in the background.
 
 That's it! You're done! Your server is online. You can find your IP on the Cloud instances page.
 
