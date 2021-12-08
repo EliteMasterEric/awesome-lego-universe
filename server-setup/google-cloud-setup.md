@@ -80,6 +80,10 @@ Then, you can access your cloud account from the [Google Cloud Console](https://
 
 Click on the `Compute Engine` tab, and then click on the `Create Instance` button to create a new VM instance.
 
+![](../images/google-cloud-compute.png)
+
+![](../images/google-cloud-create.png)
+
 * Name it if you like. The default regon and zone are fine.
 * Select the machine type. The default is a 2-core, 4GB memory machine, which is way overkill for what we want. Select the series N1, machine type `f1-micro`, which at time of writing is currently priced at $4.88/month or $0.01/hour. Even this is more than what you need for a DLU server but smaller instances aren't available.
 * Scroll to the bottom and click Create.
@@ -201,8 +205,8 @@ mkdir ~/logs
 # Initialize the database. You will need to enter the password you chose earlier.
 mariadb darkflame -u darkflame -p < ~/DarkflameServer/migrations/dlu/0_initial.sql;
 
-# Unzip the server-resources.zip and move files to the proper location.
-unzip -q ~/server-resources.zip -d ~/server-resources/
+# Unzip the server-resources.zip and move files to the proper location. This should spit out a lot of paths.
+unzip ~/server-resources.zip -d ~/server-resources/
 mv ~/server-resources/server-resources/* ~/DarkflameServer/build/
 
 # Extract the navmeshes.
@@ -275,7 +279,9 @@ These will start the server and account manager in the background.
 You can view the logs of the server by running `screen -r darkflame-server` and of the account manager by running `screen -r darkflame-accounts`.
 You can stop viewing the logs by pressing `CTRL+A` and then `D`.
 
-That's it! You're done! Your server is online.
+That's it! You're done! Your server is online. You can find your IP on the Cloud instances page.
+
+![](../images/google-cloud-ip.png)
 
 ## Moderation
 
