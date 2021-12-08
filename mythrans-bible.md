@@ -117,7 +117,7 @@ This mission ID corresponds to the required mission in which the player must sur
 
 #### /requestmailcount
 
-**TODO: What does this do?**
+This command will show the `You have x new messages` status box at the bottom right corner of your game screen.
 
 #### /instanceinfo
 
@@ -135,7 +135,7 @@ Displays basic information about the currently connected Darkflame Universe serv
 
 **TODO: This requires clarification.**
 
-Moves the current player out of an instanced zone.
+Moves the current player out of an instanced zone. Such as the Block Yard or a Minigame such as Avant Garden Survival
 
 #### /join <password>
 
@@ -195,9 +195,16 @@ Boost the player's speed by the given amount.
 
 #### /freecam
 
-**TODO: Expand description.**
+| Key     | Description                                  |
+|---------|----------------------------------------------|
+| Q/E     | Rotates the camera by the X axis. Left-Right |
+| R/F     | Moves the camera up and down the Y axis      |
+| W/A/S/D | Moves the camera by the X / Z Axis           |
+| Mouse   | Rotate the camera by X / Y / Z               |
 
 Toggles free camera mode.
+    
+**TODO: Expand description.**
 
 #### /setcontrolscheme
 
