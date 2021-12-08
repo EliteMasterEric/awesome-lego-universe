@@ -59,8 +59,6 @@ You should have a directory containing the following file structure.
   |-names
     |- ...
   |-maps
-    |-navmeshes
-      |- ...
     |- ...
   |-chatplus_en_us.txt
   |-cdclient.fdb
@@ -193,7 +191,7 @@ Once the build is done, we're going to do the final configuration needed for the
 Download the server-resources.zip file from Google Cloud Storage. Be sure to replace the bucket name.
 
 ```bash
-gsutil cp gs://<BUCKET-NAME>/server-resources.zip ~/server-resources.zip
+gsutil cp gs://BUCKETNAME/server-resources.zip ~/server-resources.zip
 ```
 
 Then run all these commands, one at a time, in order.
