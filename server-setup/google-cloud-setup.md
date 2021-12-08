@@ -254,7 +254,8 @@ Now we are finally going to run the server.
 First run the following command; you will be prompted to create a username and password. Make this secure, as it will be the credentials for a Mythran account with full server operator access.
 
 ```
-~/DarkflameServer/build/MasterServer -a
+cd ~/DarkflameServer/build/
+./MasterServer -a
 ```
 
 Now you can start the server and account manager. Run these commands:
