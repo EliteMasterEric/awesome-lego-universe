@@ -16,10 +16,12 @@ On December 5th, 2021, the Darkflame Universe project released an open-source se
 
 ### Server Setup Guides
 
-* ~~[MasterEric's Google Cloud Guide]\(server-setup/google-cloud-setup.md)~~
+Complete Guides:
+* [MasterEric's Google Cloud Guide](server-setup/google-cloud-setup.md)
 * [Elocore's Video Guide (WSL)](https://www.youtube.com/watch?v=mDGoV5AYaDo)
 * [TheNinjaOfLU's Video Guide (WSL)](https://www.youtube.com/watch?v=jZJR4VrUG9U)
 
+Other Guides:
 * [Sunflea's Guide (WSL)](https://gist.github.com/SunFlea/893fd80f39c7cf9ab31baacac284025d)
 * [Drahsid's Install Script (Linux)](https://github.com/Drahsid/DarkflameServerInstallScript)
 * [MaxDelayer's Quick Start Scripts (Linux)](https://github.com/maxdelayer/DLUQuickstart)

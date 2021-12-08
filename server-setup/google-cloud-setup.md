@@ -216,6 +216,14 @@ sqlite3 ~/DarkflameServer/build/res/CDServer.sqlite ".read ${HOME}/DarkflameServ
 sqlite3 ~/DarkflameServer/build/res/CDServer.sqlite ".read ${HOME}/DarkflameServer/migrations/cdserver/1_fix_overbuild_mission.sql"
 sqlite3 ~/DarkflameServer/build/res/CDServer.sqlite ".read ${HOME}/DarkflameServer/migrations/cdserver/2_script_component.sql"
 
+# Perform additional networking setup.
+EXTERNAL_IP=$(curl -H "Metadata-Flavor: Google" http://169.254.169.254/computeMetadata/v1/instance/network-interfaces/0/access-configs/0/external-ip)
+sudo lsmod | grep dummy
+sudo modprobe dummy
+sudo lsmod | grep dummy
+sudo ip link add eth10 type dummy
+sudo ip addr add $EXTERNAL_IP brd + dev eth10 label eth10:
+
 # Setup your config files.
 sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/build/authconfig.ini
 sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/build/chatconfig.ini
@@ -229,6 +237,9 @@ sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/build/au
 sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/build/chatconfig.ini
 sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/build/masterconfig.ini
 sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/build/worldconfig.ini
+sed -i "s/external_ip=localhost/external_ip=$EXTERNAL_IP/g" ~/DarkflameServer/build/authconfig.ini
+sed -i "s/external_ip=localhost/external_ip=$EXTERNAL_IP/g" ~/DarkflameServer/build/chatconfig.ini
+sed -i "s/external_ip=localhost/external_ip=$EXTERNAL_IP/g" ~/DarkflameServer/build/masterconfig.ini
 ```
 
 Now we need to fill in your password. Make sure to replace `PASSWORD` with the proper value on these lines.
@@ -303,3 +314,5 @@ screen -dmS darkflame-server bash -c "cd ~/DarkflameServer/build/; ./MasterServe
 If you have an issue with any of the above steps, visit the link below to review common questions and troubleshooting tips.
 
 [Google Cloud Setup Troubleshooting](google-cloud-troubleshooting.md)
+
+You can also get support on the `#questions` channel of the LUCH Discord server.
