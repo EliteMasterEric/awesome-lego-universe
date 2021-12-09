@@ -173,14 +173,23 @@ We're going to create a set of Firewall rules that allow access to the server.
 Now lets assign these rules to the server.
 
 * Move back to the home of your Google Cloud project (which currently contains your cloud instance).
+
 ![](../images/google-cloud-back-to-home.png)
+
 * Click 'Compute Engine'. You should see your `darkflame-instance` listed. Click on it.
+
 ![](../images/google-cloud-compute.png)
+
 ![](../images/google-cloud-click-instance.png)
+
 * Click 'Edit' at the top.
+
 ![](../images/google-cloud-click-edit.png)
+
 * Scroll down to 'Network tags' and enter `darkflame-server`.
+
 ![](../images/google-cloud-add-network-tag.png)
+
 * Scroll to the bottom and click 'Save'.
 
 ## Setup the Server
