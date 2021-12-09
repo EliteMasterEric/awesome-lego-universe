@@ -74,7 +74,8 @@ Click on the `Compute Engine` tab, and then click on the `Create Instance` butto
 
 ![](../images/google-cloud-create.png)
 
-* Name it if you like. The default regon and zone are fine.
+* Name it `darkflame-instance`.
+* The default regon and zone are fine.
 * Select the machine type. The default is a 2-core, 4GB memory machine, which is way overkill for what we want. Select the series N1, machine type `f1-micro`, which at time of writing is currently priced at $4.88/month or $0.01/hour. Even this is more than what you need for a DLU server but smaller instances aren't available.
 * Scroll to the bottom and click Create.
 
@@ -137,7 +138,7 @@ chmod +x build.sh
 ./build.sh
 ```
 
-Wait until the build process is complete. This will take a while. In the meantime, you can move on to the next steps. Just don't close the window!
+Wait until the build process is complete. This will take a while. In the meantime, you can move on and complete the Upload Resources and Configuring the Server's Firewall sections below. Just don't close the window!
 
 ## Upload Resources
 
@@ -172,9 +173,14 @@ We're going to create a set of Firewall rules that allow access to the server.
 Now lets assign these rules to the server.
 
 * Move back to the home of your Google Cloud project (which currently contains your cloud instance).
+![](../images/google-cloud-back-to-home.png)
 * Click 'Compute Engine'. You should see your `darkflame-instance` listed. Click on it.
+![](../images/google-cloud-compute.png)
+![](../images/google-cloud-click-instance.png)
 * Click 'Edit' at the top.
+![](../images/google-cloud-click-edit.png)
 * Scroll down to 'Network tags' and enter `darkflame-server`.
+![](../images/google-cloud-add-network-tag.png)
 * Scroll to the bottom and click 'Save'.
 
 ## Setup the Server
