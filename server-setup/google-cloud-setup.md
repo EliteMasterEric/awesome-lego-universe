@@ -260,8 +260,6 @@ sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/build/wor
 sed -i "s|DB_URL = 'mysql+pymysql://<mysql-user>:<mysql-password>@<mysql-host>/<mysql-database>'|DB_URL = 'mysql+pymysql://darkflame:PASSWORD@localhost/darkflame'|g" ~/AccountManager/credentials.py
 ```
 
-Make sure to go back to the Cloud Storage page and delete the bucket you created, since you don't need it anymore.
-
 ## Run the Server
 
 Now we are finally going to run the server.
@@ -319,6 +317,31 @@ git pull
 # Restart the server.
 screen -dmS darkflame-server bash -c "cd ~/DarkflameServer/build/; ./MasterServer"
 ```
+
+## Backup Your Database
+
+Backing up your database is a good idea, as it will allow you to recover your data if you lose your server.
+
+1. Run the following command on your server, then enter your database password.
+
+```bash
+mysqldump -u darkflame darkflame --result-file=$HOME/dump.sql -p
+```
+
+2. The complete contents of your server's database will be output to the file `~/dump.sql`. This is including, but not limited to:
+
+* Accounts, including usernames and (encrypted) passwords.
+* Characters, including their inventory, stats, mission progress, and other data.
+* Activity logs, including login and logout times for each player.
+* Minigame leaderboards, including scores and times for each player.
+
+3. To get the dump file off the server, run the following command. This will place the file on the Google Cloud Storage instance you created to upload the server-resources file.
+
+```bash
+gsutil cp dump.sql gs://BUCKETNAME/dump.sql
+```
+
+If the last step fails, see the [Google Cloud Setup Troubleshooting](google-cloud-troubleshooting.md) page.
 
 ## Troubleshooting
 
