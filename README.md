@@ -36,6 +36,7 @@ On December 5th, 2021, the Darkflame Universe project released an open-source se
   - Describes everything known about the inner workings of the game, including the Behavior and Skill systems.
 * [LU Explorer tool](https://github.com/Xiphoseer/lu-explorer)
   - Allows you to browse the contents of `CDClient.fdb`.
+* [DLU Asset Creation Guide](https://docs.google.com/document/d/15YDtHg3-i3Pn6HTEFkpAjKsvUF6u49ZsQam5b614YRw/edit)
 * [LU Developer Network](https://lu-dev.net/)
 * [LU Server Projects](https://lusprojects.github.io/)
 
