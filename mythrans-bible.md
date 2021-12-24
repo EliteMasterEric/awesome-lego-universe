@@ -458,37 +458,33 @@ Below is a list of all of the zones accessible in the base game. Developers can 
 
 ID | Name
 ---|---
-98|UNKNOWN
-1000|UNKNOWN
-1001|UNKNOWN
-1100|UNKNOWN
-1101|UNKNOWN
-1150|UNKNOWN
-1151|UNKNOWN
-1152|UNKNOWN
-1200|UNKNOWN
-1201|UNKNOWN
-1250|UNKNOWN
-1251|UNKNOWN
-1260|UNKNOWN
-1300|UNKNOWN
-1350|UNKNOWN
-1351|UNKNOWN
-1400|UNKNOWN
-1401|UNKNOWN
-1450|UNKNOWN
-1451|UNKNOWN
-1600|UNKNOWN
-1601|UNKNOWN
-1602|UNKNOWN
-1603|UNKNOWN
-1604|UNKNOWN
-1800|UNKNOWN
-1900|UNKNOWN
-2000|UNKNOWN
-58004|UNKNOWN
-58005|UNKNOWN
-58006|UNKNOWN
+1000|Venture Explorer
+1001|Return to Venture Explorer
+1100|Avant Gardens
+1101|Avant Gardens Survival
+1150|Block Yard
+1151|Avant Grove
+1200|Nimbus Station
+1201|Pet Cove
+1204|Battle of Nimbus Station
+1250|Nimbus Rock
+1251|Nimbus Isle
+1300|Gnarled Forest
+1302|Cannon Cove Shooting Gallery
+1350|Chantey Shanty
+1400|Forbidden Valley
+1402|Forbidden Valley Dragon Battle
+1403|Dragonmaw Chasm Racetrack
+1450|Raven Bluff
+1600|Starbase 3001
+1601|DeepFreeze
+1602|Robot City
+1603|MoonBase
+1604|Portabello
+1800|Crux Prime
+1900|Nexus Tower
+2000|Ninjago Monastery
+2001|Battle Against Frakjaw
 
 ## Notable Item IDs
 
