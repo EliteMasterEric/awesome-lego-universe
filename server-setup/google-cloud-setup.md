@@ -11,9 +11,9 @@ The downside to this method is that it does technically cost money. You may have
 
 ## Setup Client Files
 
-The first step in this process is setting up your client files. You will need a Lego Universe 1.10.64 client before continuing. Note that a link to a client cannot be provided in this guide for legal reasons, but Google should be able to help you.
+The first step in this process is setting up your client files. You will need a LEGO Universe 1.10.64 client before continuing. Note that a link to a client cannot be provided in this guide for legal reasons, but Google should be able to help you.
 
-Once you've obtained a client, [make sure it is good by validating the checksum](verify-my-client.md).
+Once you've obtained a client, [make sure it is good by validating the checksum](/verify-my-client.md).
 
 ## Unpack Client Files
 
@@ -62,24 +62,27 @@ Finally, right click your `server-resources` folder, and select 'Send to...' > '
 
 ## Getting Started with Google Cloud
 
-Google makes it very easy to set up a server instance in the cloud. First, [sign up for an account with Google Cloud](https://cloud.google.com/). You should see this popup to let you know you've received $300 in trial credits:
+Google makes it very easy to set up a server instance in the cloud.
 
-![](../images/google-cloud-trial.png)
+1. First, [sign up for an account with Google Cloud](https://cloud.google.com/). You should see this popup to let you know you've received $300 in trial credits:
 
-Then, you can access your cloud account from the [Google Cloud Console](https://console.cloud.google.com/). Google has a LOT of powerful tools and resources, but most of them are designed for larger businesses and not relevant to this guide, so don't get overwhelmed.
+    ![](../images/google-cloud-trial.png)
 
-Click on the `Compute Engine` tab, and then click on the `Create Instance` button to create a new VM instance.
+2. Then, you can access your cloud account from the [Google Cloud Console](https://console.cloud.google.com/). Google has a LOT of powerful tools and resources, but most of them are designed for larger businesses and not relevant to this guide, so don't get overwhelmed.
 
-![](../images/google-cloud-compute.png)
+3. Click on the `Compute Engine` tab, and then click on the `Create Instance` button to create a new VM instance.
 
-![](../images/google-cloud-create.png)
+    ![](../images/google-cloud-compute.png)
 
-* Name it `darkflame-instance`.
-* The default regon and zone are fine.
-* Select the machine type. The default is a 2-core, 4GB memory machine, which is way overkill for what we want. Select the series N1, machine type `f1-micro`, which at time of writing is currently priced at $4.88/month or $0.01/hour. Even this is more than what you need for a DLU server but smaller instances aren't available.
-* Scroll to the bottom and click Create.
+    ---
 
-Once the instance is ready, click it, then click SSH to connect to your instance. You will then see a browser window containing a terminal.
+    ![](../images/google-cloud-create.png)
+
+4. Name it `darkflame-instance`.
+5. The default regon and zone are fine.
+6. Select the machine type. The default is a 2-core, 4GB memory machine, which is way overkill for what we want. Select the series N1, machine type `f1-micro`, which at time of writing is currently priced at $4.88/month or $0.01/hour. Even this is more than what you need for a DLU server but smaller instances aren't available.
+7. Scroll to the bottom and click Create.
+8. Once the instance is ready, click it, then click SSH to connect to your instance. You will then see a browser window containing a terminal.
 
 Congratulations! What you've essentially done is reserve a tiny spot on Google's massive server farm, and created a Linux computer in it. We're going to build and install Darkflame Universe on here, and you and your friends will be able to connect and play the game.
 
@@ -144,53 +147,55 @@ Wait until the build process is complete. This will take a while. In the meantim
 
 Next, we're going to upload the resources folder [we created earlier](#setup-resource-directory) to the proper location. In order to do this in a way that doesn't differ between computers, we're going to create a Google Cloud Storage bucket and upload the files to it.
 
-* Click 'Google Cloud Platform' at the top to move to the Google Cloud homepage.
-* Click 'Cloud Storage' on the left.
-* Click 'Create Bucket' at the top.
-* Pick a name that is easy to remember and easy to type. It needs to be GLOBALLY unique apparently.
-* Stick with the defaults for region, storage class, access control, and protection.
+1. Click 'Google Cloud Platform' at the top to move to the Google Cloud homepage.
+2. Click 'Cloud Storage' on the left.
+3. Click 'Create Bucket' at the top.
+4. Pick a name that is easy to remember and easy to type. It needs to be GLOBALLY unique apparently.
+5. Stick with the defaults for region, storage class, access control, and protection.
 
-Now the bucket is created, you will see the details page for that bucket and a list of objects (i.e. files) in it.
+    Now the bucket is created, you will see the details page for that bucket and a list of objects (i.e. files) in it.
 
-Click 'Upload File', select your `server-resources` ZIP, and click upload. This process should take just a second.
+6. Click 'Upload File', select your `server-resources` ZIP, and click upload. This process should take just a second.
 
 ## Configuring the Server's Firewall
 
 Before we get started building the server, we need to configure the server's firewall. Follow these steps:
 
-* Click 'Compute Engine' to move back to the Compute Engine homepage.
-* Under Related Actions, click 'Set up Firewall rules'
-* Click 'Create Firewall Rule' at the top.
+1. Click 'Compute Engine' to move back to the Compute Engine homepage.
+2. Under Related Actions, click 'Set up Firewall rules'
+3. Click 'Create Firewall Rule' at the top.
 
 We're going to create a set of Firewall rules that allow access to the server.
 
-* Set the name to `darkflame-server`.
-* Add `darkflame-server` to the list of target tags. We're going to assign this tag to our server later.
-* Set the Source IPv4 ranges to `0.0.0.0/0`. This represents all IP addresses, meaning this rule will allow any incoming IP.
-* Under Protocols and ports, check `TCP` and enter the string `1001, 2000, 2005, 3000-4000, 3306, 5000`. This will allow access to the auth server, master server, chat server, world servers, database, and account manager.
-* Under Protocols and ports, check `UDP` and enter the string `1001, 2000, 2005, 3000-4000, 3306, 5000`.
+1. Set the name to `darkflame-server`.
+2. Add `darkflame-server` to the list of target tags. We're going to assign this tag to our server later.
+3. Set the Source IPv4 ranges to `0.0.0.0/0`. This represents all IP addresses, meaning this rule will allow any incoming IP.
+4. Under Protocols and ports, check `TCP` and enter the string `1001, 2000, 2005, 3000-4000, 3306, 5000`. This will allow access to the auth server, master server, chat server, world servers, database, and account manager.
+5. Under Protocols and ports, check `UDP` and enter the string `1001, 2000, 2005, 3000-4000, 3306, 5000`.
 
 Now lets assign these rules to the server.
 
-* Move back to the home of your Google Cloud project (which currently contains your cloud instance).
+1. Move back to the home of your Google Cloud project (which currently contains your cloud instance).
 
-![](../images/google-cloud-back-to-home.png)
+    ![](../images/google-cloud-back-to-home.png)
 
-* Click 'Compute Engine'. You should see your `darkflame-instance` listed. Click on it.
+2. Click 'Compute Engine'. You should see your `darkflame-instance` listed. Click on it.
 
-![](../images/google-cloud-compute.png)
+    ![](../images/google-cloud-compute.png)
 
-![](../images/google-cloud-click-instance.png)
+    ---
 
-* Click 'Edit' at the top.
+    ![](../images/google-cloud-click-instance.png)
 
-![](../images/google-cloud-click-edit.png)
+3. Click 'Edit' at the top.
 
-* Scroll down to 'Network tags' and enter `darkflame-server`.
+    ![](../images/google-cloud-click-edit.png)
 
-![](../images/google-cloud-add-network-tag.png)
+4. Scroll down to 'Network tags' and enter `darkflame-server`.
 
-* Scroll to the bottom and click 'Save'.
+    ![](../images/google-cloud-add-network-tag.png)
+
+5. Scroll to the bottom and click 'Save'.
 
 ## Setup the Server
 
@@ -290,10 +295,10 @@ That's it! You're done! Your server is online. You can find your IP on the Cloud
 
 Now that you are running a server, you should follow these steps:
 
-* Go to your web browser, and navigate to `http://<IP-ADDRESS>:5000/dashboard`, where `<IP-ADDRESS>` is the IP address of your server.
-* You will see a login. Enter the Mythran credentials you entered earlier.
-* You will be redirected to the dashboard. Enter a number of keys to generate, and click `Generate`.
-* You will see a list of CD keys. Give one of these keys to each player you want to join.
+1. Go to your web browser, and navigate to `http://<IP-ADDRESS>:5000/dashboard`, where `<IP-ADDRESS>` is the IP address of your server.
+2. You will see a login. Enter the Mythran credentials you entered earlier.
+3. You will be redirected to the dashboard. Enter a number of keys to generate, and click `Generate`.
+4. You will see a list of CD keys. Give one of these keys to each player you want to join.
 
 To allow a player to join, give them one of these CD keys, and tell them to go to `http://<IP-ADDRESS>:5000/activate` and create an account.
 
@@ -303,7 +308,7 @@ Once they have an account, the player should be able to change their client's `b
 
 ## Updating Darkflame Universe
 
-In the future, updates will be release to DarkflameServer that will include bug fixes and potentially even new features. To update the server, you can run the following commands, in order:
+In the future, updates will be released to DarkflameServer that will include bug fixes and potentially even new features. To update the server, you can run the following commands, in order:
 
 ```
 # Shut down the server.
@@ -324,22 +329,22 @@ Backing up your database is a good idea, as it will allow you to recover your da
 
 1. Run the following command on your server, then enter your database password.
 
-```bash
-mysqldump -u darkflame darkflame --result-file=$HOME/dump.sql -p
-```
+    ```bash
+    mysqldump -u darkflame darkflame --result-file=$HOME/dump.sql -p
+    ```
 
 2. The complete contents of your server's database will be output to the file `~/dump.sql`. This is including, but not limited to:
 
-* Accounts, including usernames and (encrypted) passwords.
-* Characters, including their inventory, stats, mission progress, and other data.
-* Activity logs, including login and logout times for each player.
-* Minigame leaderboards, including scores and times for each player.
+    * Accounts, including usernames and (encrypted) passwords.
+    * Characters, including their inventory, stats, mission progress, and other data.
+    * Activity logs, including login and logout times for each player.
+    * Minigame leaderboards, including scores and times for each player.
 
 3. To get the dump file off the server, run the following command. This will place the file on the Google Cloud Storage instance you created to upload the server-resources file.
 
-```bash
-gsutil cp dump.sql gs://BUCKETNAME/dump.sql
-```
+    ```bash
+    gsutil cp dump.sql gs://BUCKETNAME/dump.sql
+    ```
 
 If the last step fails, see the [Google Cloud Setup Troubleshooting](google-cloud-troubleshooting.md) page.
 

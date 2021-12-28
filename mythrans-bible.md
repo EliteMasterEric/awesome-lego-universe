@@ -29,7 +29,7 @@ Players have a max GM level and a current GM level; at any time, a player can us
 
 A player with full GM permissions can lower themselves down to 0 to play the game as though they were a normal player, then raise their level up if they need to do something like teleport or unstuck themselves. Think of it like Minecraft; if you have permissions, you can play the game in Survival, and call `/gamemode creative` only when you get stuck.
 
-There are 10 total levels, as follows|
+There are 10 total levels, as follows:
 
 * 0 - Civilian: This level describes all normal players of the game.
     - Players at this level still have access some commands, see the Console Commands section below.
@@ -61,7 +61,7 @@ There are 10 total levels, as follows|
 
 Here is a list of all console commands, grouped by required permission level. Each level also has access to the commands of the levels above them. To run one of these console comands, enter them into chat.
 
-Values in `<brackets>` represent necessary parameters, values in `(parens)` represnt optional parameters.
+Values in `<brackets>` represent necessary parameters, values in `(parens)` represent optional parameters.
 
 ### WORK IN PROGRESS
 
@@ -79,7 +79,7 @@ This system functions similarly to Terraria's PvP system; you must enable PvP in
 
 #### /playanimation <anim-name>
 
-This command triggers the player to play an animation with the given internal name. This can look somewhat buggy, since any player animation can be played, such as attacks that don't match your current gear, but isn't that part of the fun if it?
+This command triggers the player to play an animation with the given internal name. This can look somewhat buggy, since any player animation can be played, such as attacks that don't match your current gear, but isn't that part of the fun is it?
 
 **TODO: Add a curated list of some fun animations.**
 
@@ -388,9 +388,11 @@ Grants a specified buff for a given duration.
 
 #### /testmap <zone> (force)
 
-Attempt to transport the player to the given world.
+Attempt to transport the player to the given zone.
 
 Use `/testmap <zone> force` to forcibly teleport to a potentially invalid zone. Can have disastrous results.
+
+See [Available Zone IDs](#available-zone-ids) for a list of zone IDs you can use.
 
 #### /createprivate
 
@@ -421,6 +423,8 @@ Activate one or more spawners by name.
 **TODO: What does this do?**
 
 #### /inspect
+
+**TODO: What does this do?**
 
 #### /reforge <base> <target>
 

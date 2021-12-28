@@ -27,7 +27,7 @@ This error occurs when the instance's service account does not have the correct 
 Follow the steps below to configure the instance:
 
 1. Go to the Google Cloud Console and navigate to the Compute Engine tab.
-2. Select the instance and click `Stop`. This will temporarily shut down the server and stop the instance. You will be ablt to start it back up later.
+2. Select the instance and click `Stop`. This will temporarily shut down the server and stop the instance. You will be able to start it back up later.
 3. Click the instance name in the list of instances to open up the details page, then click `Edit` at the top.
 4. Scroll down to the subheading named `Access scopes` and select `Allow full access to all Cloud APIs`.
 5. Click `Save` to save the changes.

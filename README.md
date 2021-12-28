@@ -1,4 +1,4 @@
-# Awesome Lego Universe
+# Awesome LEGO Universe
 
 ![](images/splash-art.jpg)
 
