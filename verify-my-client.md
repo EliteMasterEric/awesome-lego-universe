@@ -1,6 +1,6 @@
 # Verifying My Client
 
-So you've just downloaded what appears to be a Lego Universe client, but you don't know if it's the right one. Maybe it's too old? Is the download corrupted? Or worse, what if it's actually a virus?
+So you've just downloaded what appears to be a LEGO Universe client, but you don't know if it's the right one. Maybe it's too old? Is the download corrupted? Or worse, what if it's actually a virus?
 
 Thankfully, there's a foolproof method to verify a client: Checksums.
 
@@ -12,13 +12,13 @@ A checksum function is a procedure which takes some input data and generates an 
 
 The important thing to know is that if the input data is even the tiniest bit different, it will completely change the output string. See below.
 
-![](images/checksum.png)
+![Checksum explanation image](images/checksum.png)
 
 By the nature of the checksum function, it is basically impossible to intentionally create a file that even resembles, much less exactly matches, a given checksum. For SHA-256 (the checksum function we will be using in this guide), the odds that two files will have the same checksum is approximately...
 
 1 in 4,300,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000,000
 
-Add on top of that the odds that the file isn't a garbled mess, on top of the odds that the file resembles a Lego Universe client...
+Add on top of that the odds that the file isn't a garbled mess, on top of the odds that the file resembles a LEGO Universe client...
 
 ## Basic Steps
 
@@ -44,9 +44,9 @@ With how useful taking the checksum of a file is, it's really something that Win
 
 1. Open a command line terminal (cmd.exe).
 2. Run the following command, replacing `<file>` with the path to your client.
-```
-certutil -hashfile <file> SHA256
-```
+    ```
+    certutil -hashfile <file> SHA256
+    ```
 3. The command will output a long string of characters.
     - Compare it to make sure it matches one of the ones above.
     - If your client is out-of-date, corrupted, or potentially malicious, the SHA256 checksum will significantly differ from the ones above.
@@ -55,9 +55,9 @@ certutil -hashfile <file> SHA256
 
 1. Open a command line terminal.
 2. Run the following command, replacing `<file>` with the path to your client.
-```
-shasum -a 256 <file>
-```
+    ```
+    shasum -a 256 <file>
+    ```
 3. The command will output a long string of characters.
     - Compare it to make sure it matches one of the ones above.
     - If your client is out-of-date, corrupted, or potentially malicious, the SHA256 checksum will significantly differ from the ones above.
@@ -66,9 +66,9 @@ shasum -a 256 <file>
 
 1. Open a command line terminal.
 2. Run the following command, replacing `<file>` with the path to your client.
-```
-shasum -a 256 <file>
-```
+    ```
+    shasum -a 256 <file>
+    ```
 3. The command will output a long string of characters.
     - Compare it to make sure it matches one of the ones above.
     - If your client is out-of-date, corrupted, or potentially malicious, the SHA256 checksum will significantly differ from the ones above. 
