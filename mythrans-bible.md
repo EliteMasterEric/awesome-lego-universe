@@ -79,7 +79,7 @@ This system functions similarly to Terraria's PvP system; you must enable PvP in
 
 #### /playanimation <anim-name>
 
-This command triggers the player to play an animation with the given internal name. This can look somewhat buggy, since any player animation can be played, such as attacks that don't match your current gear, but isn't that part of the fun is it?
+This command triggers the player to play an animation with the given internal name. This can look somewhat buggy, since any player animation can be played, such as attacks that don't match your current gear, but isn't that part of the fun of it?
 
 **TODO: Add a curated list of some fun animations.**
 
