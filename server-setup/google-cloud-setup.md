@@ -79,7 +79,7 @@ Google makes it very easy to set up a server instance in the cloud.
     ![](../images/google-cloud-create.png)
 
 4. Name it `darkflame-instance`.
-5. The default regon and zone are fine.
+5. The default region and zone are fine.
 6. Select the machine type. The default is a 2-core, 4GB memory machine, which is way overkill for what we want. Select the series N1, machine type `f1-micro`, which at time of writing is currently priced at $4.88/month or $0.01/hour. Even this is more than what you need for a DLU server but smaller instances aren't available.
 7. Scroll to the bottom and click Create.
 8. Once the instance is ready, click it, then click SSH to connect to your instance. You will then see a browser window containing a terminal.
