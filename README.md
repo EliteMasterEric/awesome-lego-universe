@@ -17,7 +17,7 @@ On December 5th, 2021, the Darkflame Universe project released an open-source se
 ### Server Setup Guides
 
 * [MasterEric's Google Cloud Guide (Google)](server-setup/google-cloud-setup.md)
-* [Saymoan's VPS Guide (Oracle/AWS)](https://gist.github.com/Saymoan/cee72d3e6244a51f70124ac86a2802e9)
+* [Saymoan's VPS Guide (Oracle/AWS)](https://gist.github.com/simondumalski/cee72d3e6244a51f70124ac86a2802e9)
 * [Elocore's Video Guide (WSL)](https://www.youtube.com/watch?v=mDGoV5AYaDo)
 * [TheNinjaOfLU's Video Guide (WSL)](https://www.youtube.com/watch?v=jZJR4VrUG9U)
 * [Sunflea's Guide (WSL)](https://gist.github.com/SunFlea/893fd80f39c7cf9ab31baacac284025d)
