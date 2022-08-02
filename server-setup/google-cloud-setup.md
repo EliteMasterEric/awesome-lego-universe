@@ -93,7 +93,7 @@ Once you've opened the terminal, run these commands, one at a time, in order.
 ```bash
 # Install almost every dependency we need.
 sudo apt-get update
-sudo apt-get install -y python3 python3-pip build-essential gcc libssl-dev zlib1g zlib1g-dev sqlite git gpg wget unzip screen
+sudo apt-get install -y python3 python3-pip build-essential gcc libssl-dev zlib1g zlib1g-dev sqlite3 git gpg wget unzip screen
 
 # This installs MariaDB
 sudo apt-get install -y default-mysql-server
