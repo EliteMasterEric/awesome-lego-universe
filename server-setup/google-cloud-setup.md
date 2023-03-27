@@ -1,3 +1,5 @@
+
+
 # Setup Instructions for Darkflame Universe (Google Cloud Setup)
 
 The following is a guide to setting up a functioning Darkflame Universe server instance running in the cloud, which has several key benefits:
@@ -130,7 +132,6 @@ Next, run these commands one at a time to download and build the server:
 
 ```bash
 git clone --recursive https://github.com/DarkflameUniverse/DarkflameServer ~/DarkflameServer
-git clone https://github.com/lcdr/utils.git ~/lcdrutils
 git clone https://github.com/DarkflameUniverse/AccountManager ~/AccountManager
 wget -O ~/AccountManager/credentials.py https://raw.githubusercontent.com/MasterEric/awesome-lego-universe/master/server-setup/google-cloud-res/credentials.py
 wget -O ~/AccountManager/resources.py https://raw.githubusercontent.com/MasterEric/awesome-lego-universe/master/server-setup/google-cloud-res/resources.py
@@ -170,8 +171,8 @@ We're going to create a set of Firewall rules that allow access to the server.
 1. Set the name to `darkflame-server`.
 2. Add `darkflame-server` to the list of target tags. We're going to assign this tag to our server later.
 3. Set the Source IPv4 ranges to `0.0.0.0/0`. This represents all IP addresses, meaning this rule will allow any incoming IP.
-4. Under Protocols and ports, check `TCP` and enter the string `1001, 2000, 2005, 3000-4000, 3306, 5000`. This will allow access to the auth server, master server, chat server, world servers, database, and account manager.
-5. Under Protocols and ports, check `UDP` and enter the string `1001, 2000, 2005, 3000-4000, 3306, 5000`.
+4. Under Protocols and ports, check `TCP` and enter the string `1001, 2005, 3000-4000, 5000`. This will allow access to the auth server, master server, chat server, world servers, database, and account manager.
+5. Under Protocols and ports, check `UDP` and enter the string `1001, 2005, 3000-4000, 5000`.
 
 Now lets assign these rules to the server.
 
@@ -213,23 +214,12 @@ Then run all these commands, one at a time, in order.
 # Create a logs folder.
 mkdir ~/DarkflameServer/build/logs
 
-# Initialize the database. You will need to enter the password you chose earlier.
-mariadb darkflame -u darkflame -p < ~/DarkflameServer/migrations/dlu/0_initial.sql;
-
 # Unzip the server-resources.zip and move files to the proper location. This should spit out a lot of paths.
 unzip ~/server-resources.zip -d ~/server-resources/
 mv ~/server-resources/server-resources/* ~/DarkflameServer/build/
 
 # Extract the navmeshes.
 unzip ~/DarkflameServer/resources/navmeshes.zip -d ~/DarkflameServer/build/res/maps
-
-# Convert the FDB file to an SQLite file.
-python3 ~/lcdrutils/utils/fdb_to_sqlite.py --sqlite_path ~/DarkflameServer/build/res/CDServer.sqlite ~/DarkflameServer/build/res/cdclient.fdb
-
-# Fix the SQLite file.
-sqlite3 ~/DarkflameServer/build/res/CDServer.sqlite ".read ${HOME}/DarkflameServer/migrations/cdserver/0_nt_footrace.sql"
-sqlite3 ~/DarkflameServer/build/res/CDServer.sqlite ".read ${HOME}/DarkflameServer/migrations/cdserver/1_fix_overbuild_mission.sql"
-sqlite3 ~/DarkflameServer/build/res/CDServer.sqlite ".read ${HOME}/DarkflameServer/migrations/cdserver/2_script_component.sql"
 
 # Perform additional networking setup.
 EXTERNAL_IP=$(curl -H "Metadata-Flavor: Google" http://169.254.169.254/computeMetadata/v1/instance/network-interfaces/0/access-configs/0/external-ip)
@@ -238,30 +228,16 @@ sudo ip link add eth10 type dummy
 sudo ip addr add $EXTERNAL_IP brd + dev eth10 label eth10:
 
 # Setup your config files.
-sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/build/authconfig.ini
-sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/build/chatconfig.ini
-sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/build/masterconfig.ini
-sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/build/worldconfig.ini
-sed -i "s/mysql_database=/mysql_database=darkflame/g" ~/DarkflameServer/build/authconfig.ini
-sed -i "s/mysql_database=/mysql_database=darkflame/g" ~/DarkflameServer/build/chatconfig.ini
-sed -i "s/mysql_database=/mysql_database=darkflame/g" ~/DarkflameServer/build/masterconfig.ini
-sed -i "s/mysql_database=/mysql_database=darkflame/g" ~/DarkflameServer/build/worldconfig.ini
-sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/build/authconfig.ini
-sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/build/chatconfig.ini
-sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/build/masterconfig.ini
-sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/build/worldconfig.ini
-sed -i "s/external_ip=localhost/external_ip=$EXTERNAL_IP/g" ~/DarkflameServer/build/authconfig.ini
-sed -i "s/external_ip=localhost/external_ip=$EXTERNAL_IP/g" ~/DarkflameServer/build/chatconfig.ini
-sed -i "s/external_ip=localhost/external_ip=$EXTERNAL_IP/g" ~/DarkflameServer/build/masterconfig.ini
+sed -i "s/mysql_host=/mysql_host=localhost/g" ~/DarkflameServer/build/sharedconfig.ini
+sed -i "s/mysql_database=/mysql_database=darkflame/g" ~/DarkflameServer/build/sharedconfig.ini
+sed -i "s/mysql_username=/mysql_username=darkflame/g" ~/DarkflameServer/build/sharedconfig.ini
+sed -i "s/external_ip=localhost/external_ip=$EXTERNAL_IP/g" ~/DarkflameServer/build/sharedconfig.ini
 ```
 
 Now we need to fill in your password. Make sure to replace `PASSWORD` with the proper value on these lines.
 
 ```bash
-sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/build/authconfig.ini
-sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/build/chatconfig.ini
-sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/build/masterconfig.ini
-sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/build/worldconfig.ini
+sed -i "s/mysql_password=/mysql_password=PASSWORD/g" ~/DarkflameServer/build/sharedconfig.ini
 sed -i "s|DB_URL = 'mysql+pymysql://<mysql-user>:<mysql-password>@<mysql-host>/<mysql-database>'|DB_URL = 'mysql+pymysql://darkflame:PASSWORD@localhost/darkflame'|g" ~/AccountManager/credentials.py
 ```
 
@@ -305,6 +281,10 @@ To allow a player to join, give them one of these CD keys, and tell them to go t
 Once they have an account, the player should be able to change their client's `boot.cfg` to use your IP address, and login with the account they just made, and play the game.
 
 <!-- At the top of the dashboard, you will also see a `Name Approval` button. Click it to switch to a new tab where you can approve custom minifigure usernames. -->
+
+If you want more moderation capabilities (ie name, pet and property approval + more), follow the step guide for [NexusDashboard](https://github.com/DarkflameUniverse/NexusDashboard#manual-linux-installation)
+
+> Note, if you use NexusDashboard, you will need to add port `8000` to the Google Cloud firewall
 
 ## Updating Darkflame Universe
 
